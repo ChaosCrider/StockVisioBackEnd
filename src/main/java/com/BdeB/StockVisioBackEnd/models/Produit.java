@@ -16,6 +16,9 @@ public class Produit {
     @ManyToOne
     private Categorie categorie;
 
+    @ManyToOne
+    private Fournisseur fournisseur;
+
     private String description;
     private double seuilCritique;
     private double prixU;
