@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "produits")
-@NamedQuery(name = "Produit.findByID", query = "SELECT p FROM Produit p WHERE p.id = :ID")
+@NamedQuery(name = "Produit.findByID", query = "SELECT p FROM Produit p WHERE p.id = :id")
 public class Produit {
 
     @Id
