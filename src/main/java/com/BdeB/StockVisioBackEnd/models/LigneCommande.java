@@ -8,12 +8,11 @@ public class LigneCommande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne
     private Produit produit;
-
     private double quantite;
-
     @ManyToOne
-    private Commande commande;
+    private Commande commandeFournisseur;
+    @ManyToOne
+    private Commande commandeClient;
 }

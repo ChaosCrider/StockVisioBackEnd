@@ -17,4 +17,6 @@ public class Client {
     private String tel;
     private String email;
     private boolean statut;
+
+    private String nrc;
 }

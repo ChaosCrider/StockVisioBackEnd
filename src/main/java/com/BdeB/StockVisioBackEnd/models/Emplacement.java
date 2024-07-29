@@ -14,7 +14,6 @@ public class Emplacement {
     private String typeEmplacement;
     private double capaciteMax;
     private double quantiteActuelle;
-    private String entrepot;
     private String statut;
     private String codeEmp;
 }

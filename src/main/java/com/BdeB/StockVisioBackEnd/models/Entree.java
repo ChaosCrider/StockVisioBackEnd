@@ -6,5 +6,7 @@ import jakarta.persistence.*;
 public class Entree extends Mouvement {
 
     @ManyToOne
-    private Emplacement emplacement;
+    private Emplacement source;
+    @ManyToOne
+    private Emplacement destination;
 }

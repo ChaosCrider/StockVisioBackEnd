@@ -9,13 +9,10 @@ public class Alertes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String type;
     private Date dateCreation;
-
     @ManyToOne
     private Produit produit;
-
     private double seuilDeclenchement;
     private String message;
     private String statut;

@@ -11,4 +11,6 @@ public class Categorie {
 
     private String code;
     private String description;
+
 }
+
