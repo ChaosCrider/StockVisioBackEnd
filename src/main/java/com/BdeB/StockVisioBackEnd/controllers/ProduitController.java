@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/produits")
 public class ProduitController {
@@ -16,9 +18,10 @@ public class ProduitController {
     @Autowired
     private ProduitService produitService;
 
+
     @GetMapping("/ID")
-    public Produit getProduitById(@RequestParam int id) throws ResourceNotFoundException {
-        Produit produit = produitService.getProduitById(id);
+    public Optional<Produit> getProduitById(@RequestParam int id) throws ResourceNotFoundException {
+        Optional<Produit> produit = produitService.getProduitById(id);
         if(produit == null){
             throw new ResourceNotFoundException("Produit with ID " + id + " not found");
         }
