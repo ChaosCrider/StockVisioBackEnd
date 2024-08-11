@@ -1,25 +1,30 @@
-DROP TABLE alertes;
-DROP TABLE mouvements_sortie;
-DROP TABLE mouvements_interne;
-DROP TABLE mouvements_entree;
-DROP TABLE emplacements;
-DROP TABLE lignesCommande;
-DROP TABLE commandes_clients;p
-DROP TABLE commandes_fournisseur;
-DROP TABLE clients;
-DROP TABLE fournisseurs;
-DROP TABLE utilisateurs;
-DROP TABLE produits;
-DROP TABLE categories;
+CREATE TABLE utilisateurs (
+                              utilisateur_id SERIAL PRIMARY KEY,
+                              nom VARCHAR(255) NOT NULL,
+                              prenom VARCHAR(255),
+                              email VARCHAR(255) NOT NULL UNIQUE,
+                              mot_de_passe VARCHAR(255) NOT NULL,
+                              role VARCHAR(50) NOT NULL
+);
 
+CREATE TABLE fournisseurs (
+                              fournisseur_id SERIAL PRIMARY KEY,
+                              code_fournisseur VARCHAR(80) NOT NULL,
+                              nom VARCHAR(255) NOT NULL,
+                              prenom VARCHAR(255) NOT NULL,
+                              statut BOOLEAN NOT NULL,
+                              email VARCHAR(255),
+                              telephone VARCHAR(50),
+                              adresse TEXT,
+                              nrc VARCHAR(80)
 
+);
 
 CREATE TABLE categories (
     categorie_id SERIAL PRIMARY KEY,
     code VARCHAR(80) NOT NULL,
     description TEXT
 );
-
 
 CREATE TABLE produits (
     produit_id SERIAL PRIMARY KEY,
@@ -33,33 +38,9 @@ CREATE TABLE produits (
     quantite_en_stock DECIMAL NOT NULL,
     quantite_maximale DECIMAL NOT NULL,
 	date_achat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	date_expiration DATE NOT NULL
+	date_expiration DATE NOT NULL,
+    fournisseur_id INT REFERENCES fournisseurs(fournisseur_id)
 );
-
-
-CREATE TABLE utilisateurs (
-    utilisateur_id SERIAL PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL,
-    prenom VARCHAR(255),
-    email VARCHAR(255) NOT NULL UNIQUE,
-    mot_de_passe VARCHAR(255) NOT NULL,
-    role VARCHAR(50) NOT NULL
-);
-
-
-CREATE TABLE fournisseurs (
-    fournisseur_id SERIAL PRIMARY KEY,
-	code_fournisseur VARCHAR(80) NOT NULL,
-    nom VARCHAR(255) NOT NULL,
-	prenom VARCHAR(255) NOT NULL,
-    statut BOOLEAN NOT NULL,
-    email VARCHAR(255),
-    telephone VARCHAR(50),
-    adresse TEXT,
-	nrc VARCHAR(80)
-
-);
-
 
 CREATE TABLE clients (
     client_id SERIAL PRIMARY KEY,
@@ -74,19 +55,16 @@ CREATE TABLE clients (
 	nrc VARCHAR(80)
 );
 
-
 CREATE TABLE commandes_fournisseur (
     commande_id SERIAL PRIMARY KEY,
     quantite DECIMAL  NOT NULL,
     prix_vente DECIMAL NOT NULL,
     date_commande TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    statut VARCHAR(50) NOT NULL, ---------- en attente, en cours, recu
+    statut VARCHAR(50) NOT NULL,
     utilisateur_id INT REFERENCES utilisateurs(utilisateur_id),
     type_commande VARCHAR(20) NOT NULL DEFAULT 'fournisseur',
     fournisseur_id INT REFERENCES fournisseurs(fournisseur_id)
 );
-
-
 
 CREATE TABLE commandes_clients (
     commande_id SERIAL PRIMARY KEY,
@@ -99,8 +77,6 @@ CREATE TABLE commandes_clients (
 	client_id INT REFERENCES clients(client_id)
 );
 
-
-
 CREATE TABLE lignesCommande (
     lignesCommande_id SERIAL PRIMARY KEY,
     quantite DECIMAL NOT NULL,
@@ -109,21 +85,20 @@ CREATE TABLE lignesCommande (
     commandes_clients_id INT REFERENCES commandes_clients(commande_id)
 );
 
-
 CREATE TABLE emplacements (
     emplacement_id SERIAL PRIMARY KEY,
 	code VARCHAR(80) NOT NULL,
     nom VARCHAR(255) NOT NULL,
-    description TEXT, -------- Allée A, étagère 1, niveau supérieur--------
-	type VARCHAR(80), ----------- entrepotm, magasin---------------
+    description TEXT,
+	type VARCHAR(80),
 	capaciteMax DECIMAL NOT NULL,
 	quantite_actuelle DECIMAL NOT NULL,
-	statut VARCHAR (80) DEFAULT 'Disponible' ----- dispo, occupe, en maintenance
+	statut VARCHAR (80) DEFAULT 'Disponible'
 );
 
 
 CREATE TABLE mouvements_entree(
-	mouvement_entree_id SERIAL PRIMARY KEY,
+	mouvement_id SERIAL PRIMARY KEY,
     produit_id INT REFERENCES produits(produit_id),
     quantite DECIMAL NOT NULL,
     date_mouvement TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -133,17 +108,18 @@ CREATE TABLE mouvements_entree(
 
 
 CREATE TABLE mouvements_interne(
-	mouvement_interne_id SERIAL PRIMARY KEY,
+	mouvement_id SERIAL PRIMARY KEY,
     produit_id INT REFERENCES produits(produit_id),
     quantite DECIMAL NOT NULL,
     date_mouvement TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     utilisateur_id INT REFERENCES utilisateurs(utilisateur_id),
-    emplacement_id INT REFERENCES emplacements(emplacement_id)
+    source_id INT REFERENCES emplacements(emplacement_id),
+    destination_id INT REFERENCES emplacements(emplacement_id)
 );
 
 
 CREATE TABLE mouvements_sortie(
-	mouvement_sortie_id SERIAL PRIMARY KEY,
+	mouvement_id SERIAL PRIMARY KEY,
     produit_id INT REFERENCES produits(produit_id),
     quantite DECIMAL NOT NULL,
     date_mouvement TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -159,12 +135,9 @@ CREATE TABLE alertes (
 	produit_id INT REFERENCES produits(produit_id),
 	seuil_declanchement DECIMAL NOT NULL,
 	message TEXT,
-	statut VARCHAR(80) DEFAULT 'Nouvelle', -------------------Nouvelle, en cour, traite-------
-	date_resolution TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	priorite VARCHAR(80) -------------- Eleve, moyenne, basse-----------
+	statut VARCHAR(80) DEFAULT 'Nouvelle',
+	date_resolution TIMESTAMP,
+	priorite VARCHAR(80)
 );
 
-
-
-
-
+commit

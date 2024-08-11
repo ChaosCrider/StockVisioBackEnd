@@ -7,8 +7,11 @@ import com.BdeB.StockVisioBackEnd.model.persistance.repositories.ProduitReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sound.sampled.Port;
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @Service
 public class ProduitService {
@@ -22,15 +25,26 @@ public class ProduitService {
     @Autowired
     private CategorieRepository categorieRepository;
 
-
     private Categorie getCategorieById(int categorieId) {
         return categorieRepository.findById(categorieId).orElse(null);
     }
 
-
-    public Optional<Produit> getProduitById(int id) {
+    public List<Produit> getProduitById(int id) {
         return produitRepository.findById(id);
     }
+
+    public List<Produit> getAllProduits(){
+        return produitRepository.findAll();
+    }
+
+    public List<Produit> getFilteredProduits(Optional<Double> quantite_en_stock, Optional<Integer> categorie_id, Optional<Integer> fournisseur_id) {
+        return produitRepository.findFiltered(
+                Optional.ofNullable(quantite_en_stock.orElse(null)),
+                Optional.ofNullable(categorie_id.orElse(null)),
+                Optional.ofNullable(fournisseur_id.orElse(null))
+        );
+    }
+
 
     public void insertProduit(String codeProduit, String nom, String description, int categorieId,
                               double seuilCritique, double prixU, double prixVente, double quantiteEnStock,

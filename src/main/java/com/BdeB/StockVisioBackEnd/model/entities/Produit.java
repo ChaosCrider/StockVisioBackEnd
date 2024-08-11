@@ -5,7 +5,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "produits")
-@NamedQuery(name = "Produit.findByID", query = "SELECT p FROM Produit p WHERE p.id = :id")
+@NamedQuery(name = "Produit.findById", query = "SELECT p FROM Produit p WHERE p.id = :id")
+
+@NamedQuery(name = "Produit.findAll", query = "SELECT p FROM Produit p")
+
+@NamedQuery(name = "Produit.findFiltered", query = "SELECT p " +
+        "FROM Produit p " +
+        "WHERE (:quantite_en_stock IS NULL OR p.quantiteEnStock = :quantite_en_stock) " +
+        "AND (:categorie_id IS NULL OR p.categorie.id = :categorie_id) " +
+        "AND (:fournisseur_id IS NULL OR p.fournisseur.id = :fournisseur_id)"
+)
+
 public class Produit {
 
     @Id
@@ -13,24 +23,23 @@ public class Produit {
     @Column(name = "produit_id")
     private int id;
 
-
     @Column(name = "code", nullable = false, length = 80)
     private String codeProduit;
 
     @Column(name = "nom", nullable = false, length = 255)
     private String nom;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "seuilCritique", nullable = false)
+    @Column(name = "seuilcritique", nullable = false)
     private double seuilCritique;
 
-    @Column(name = "prix_u", nullable = false, precision = 10, scale = 2)
+    @Column(name = "prix_u", nullable = false, precision = 10)
     private double prixU;
 
     @Column(name = "date_achat", nullable = false)
@@ -47,9 +56,20 @@ public class Produit {
     @Column(name = "quantite_maximale", nullable = false)
     private double quantiteMaximale;
 
-    @Column(name = "prix_vente", nullable = false, precision = 10, scale = 2)
+    @Column(name = "prix_vente", nullable = false, precision = 10)
     private double prixVente;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fournisseur_id")
+    private Fournisseur fournisseur;
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
     public int getId() {
         return id;
     }

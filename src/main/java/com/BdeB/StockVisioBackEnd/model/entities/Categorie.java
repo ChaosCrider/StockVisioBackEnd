@@ -37,4 +37,3 @@ public class Categorie {
         return this.description;
     }
 }
-
