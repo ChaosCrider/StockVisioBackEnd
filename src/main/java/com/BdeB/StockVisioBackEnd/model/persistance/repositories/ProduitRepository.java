@@ -19,7 +19,8 @@ public interface ProduitRepository extends JpaRepository<Produit, Integer> {
 
     @Query(name = "Produit.findFiltered")
     List<Produit> findFiltered(
-            @Param("quantite_en_stock") Optional<Double> quantite_en_stock,
+            @Param("surstock") Optional<Boolean> surstock,
+            @Param("rupture") Optional<Boolean> rupture,
             @Param("categorie_id") Optional<Integer> categorie_id,
             @Param("fournisseur_id") Optional<Integer> fournisseur_id
             );

@@ -40,12 +40,14 @@ public class ProduitController {
 
     @GetMapping("/filtered")
     public List<Produit> getFilteredProduits(
-            @RequestParam(value = "quantite_en_stock", required = false) Optional<Double> quantite_en_stock,
+            @RequestParam(value = "surstock", required = false) Optional<Boolean> surstock,
+            @RequestParam(value = "rupture", required = false) Optional<Boolean> rupture,
             @RequestParam(value = "categorie_id", required = false) Optional<Integer> categorie_id,
             @RequestParam(value = "fournisseur_id", required = false) Optional<Integer> fournisseur_id
     ) throws ResourceNotFoundException{
         List<Produit> produits = produitService.getFilteredProduits(
-                Optional.ofNullable(quantite_en_stock.orElse(null)),
+                Optional.ofNullable(surstock.orElse(null)),
+                Optional.ofNullable(rupture.orElse(null)),
                 Optional.ofNullable(categorie_id.orElse(null)),
                 Optional.ofNullable(fournisseur_id.orElse(null))
         );

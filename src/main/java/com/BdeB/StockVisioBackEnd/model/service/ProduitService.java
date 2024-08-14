@@ -37,9 +37,10 @@ public class ProduitService {
         return produitRepository.findAll();
     }
 
-    public List<Produit> getFilteredProduits(Optional<Double> quantite_en_stock, Optional<Integer> categorie_id, Optional<Integer> fournisseur_id) {
+    public List<Produit> getFilteredProduits(Optional<Boolean> surstock, Optional<Boolean> rupture, Optional<Integer> categorie_id, Optional<Integer> fournisseur_id) {
         return produitRepository.findFiltered(
-                Optional.ofNullable(quantite_en_stock.orElse(null)),
+                Optional.ofNullable(surstock.orElse(null)),
+                Optional.ofNullable(rupture.orElse(null)),
                 Optional.ofNullable(categorie_id.orElse(null)),
                 Optional.ofNullable(fournisseur_id.orElse(null))
         );

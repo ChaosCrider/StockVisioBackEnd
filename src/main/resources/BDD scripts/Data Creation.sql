@@ -20,7 +20,11 @@ VALUES
     ('PROD002', 'Washing Machine', 'Automatic washing machine', 2, 5, 500.00, 600.00, 20, 40, CURRENT_TIMESTAMP, '2025-06-30',4),
     ('PROD003', 'Sofa', 'Comfortable 3-seater sofa', 3, 3, 700.00, 800.00, 10, 20, CURRENT_TIMESTAMP, '2025-12-31',3),
     ('PROD004', 'T-Shirt', 'Cotton t-shirt', 4, 50, 15.00, 20.00, 200, 500, CURRENT_TIMESTAMP, '2025-12-31',2),
-    ('PROD005', 'Novel', 'Bestselling novel', 5, 30, 10.00, 12.00, 100, 300, CURRENT_TIMESTAMP, '2025-12-31',1);
+    ('PROD005', 'Novel', 'Bestselling novel', 5, 30, 10.00, 12.00, 100, 300, CURRENT_TIMESTAMP, '2025-12-31',1),
+    ('PROD006', 'notebook', 'a paper note pad', 4, 50, 15.00, 20.00, 45, 500, CURRENT_TIMESTAMP, '2025-12-31',2),
+    ('PROD007', 'sneakers', 'a specific type of shoes.', 4, 50, 15.00, 20.00, 700, 500, CURRENT_TIMESTAMP, '2025-12-31',2);
+
+
 
 INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role)
 VALUES

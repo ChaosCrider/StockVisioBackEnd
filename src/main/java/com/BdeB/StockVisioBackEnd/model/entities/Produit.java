@@ -11,7 +11,8 @@ import java.util.Date;
 
 @NamedQuery(name = "Produit.findFiltered", query = "SELECT p " +
         "FROM Produit p " +
-        "WHERE (:quantite_en_stock IS NULL OR p.quantiteEnStock = :quantite_en_stock) " +
+        "WHERE (:surstock IS NULL OR p.quantiteEnStock > p.quantiteMaximale) " +
+        "AND (:rupture IS NULL OR p.quantiteEnStock < p.seuilCritique) " +
         "AND (:categorie_id IS NULL OR p.categorie.id = :categorie_id) " +
         "AND (:fournisseur_id IS NULL OR p.fournisseur.id = :fournisseur_id)"
 )
