@@ -11,10 +11,12 @@ import java.util.Date;
 
 @NamedQuery(name = "Produit.findFiltered", query = "SELECT p " +
         "FROM Produit p " +
+        "JOIN p.categorie c " +
+        "JOIN p.fournisseur f " +
         "WHERE (:surstock IS NULL OR p.quantiteEnStock > p.quantiteMaximale) " +
         "AND (:rupture IS NULL OR p.quantiteEnStock < p.seuilCritique) " +
-        "AND (:categorie_id IS NULL OR p.categorie.id = :categorie_id) " +
-        "AND (:fournisseur_id IS NULL OR p.fournisseur.id = :fournisseur_id)"
+        "AND (:categorie IS NULL OR c.description LIKE CONCAT('%', :categorie, '%')) " +
+        "AND (:fournisseur IS NULL OR f.nom LIKE CONCAT('%', :fournisseur, '%'))"
 )
 
 public class Produit {

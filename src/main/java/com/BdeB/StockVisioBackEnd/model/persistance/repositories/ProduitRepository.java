@@ -21,7 +21,7 @@ public interface ProduitRepository extends JpaRepository<Produit, Integer> {
     List<Produit> findFiltered(
             @Param("surstock") Optional<Boolean> surstock,
             @Param("rupture") Optional<Boolean> rupture,
-            @Param("categorie_id") Optional<Integer> categorie_id,
-            @Param("fournisseur_id") Optional<Integer> fournisseur_id
-            );
+            @Param("categorie") Optional<String> categorie,
+            @Param("fournisseur") Optional<String> fournisseur
+    );
 }

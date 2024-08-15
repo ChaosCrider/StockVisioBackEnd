@@ -37,19 +37,26 @@ public class ProduitController {
         return produits;
     }
 
+
+    /*
+    *
+    * Change Fournisseur look up by nom
+    * Change Description look up by description
+    *
+    */
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/filtered")
     public List<Produit> getFilteredProduits(
             @RequestParam(value = "surstock", required = false) Optional<Boolean> surstock,
             @RequestParam(value = "rupture", required = false) Optional<Boolean> rupture,
-            @RequestParam(value = "categorie_id", required = false) Optional<Integer> categorie_id,
-            @RequestParam(value = "fournisseur_id", required = false) Optional<Integer> fournisseur_id
+            @RequestParam(value = "categorie", required = false) Optional<String> categorie,
+            @RequestParam(value = "fournisseur", required = false) Optional<String> fournisseur
     ) throws ResourceNotFoundException{
         List<Produit> produits = produitService.getFilteredProduits(
                 Optional.ofNullable(surstock.orElse(null)),
                 Optional.ofNullable(rupture.orElse(null)),
-                Optional.ofNullable(categorie_id.orElse(null)),
-                Optional.ofNullable(fournisseur_id.orElse(null))
+                Optional.ofNullable(categorie.orElse(null)),
+                Optional.ofNullable(fournisseur.orElse(null))
         );
         if(produits == null){
             throw new ResourceNotFoundException("no Produit found");

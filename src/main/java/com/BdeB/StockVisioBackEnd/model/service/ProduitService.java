@@ -37,12 +37,12 @@ public class ProduitService {
         return produitRepository.findAll();
     }
 
-    public List<Produit> getFilteredProduits(Optional<Boolean> surstock, Optional<Boolean> rupture, Optional<Integer> categorie_id, Optional<Integer> fournisseur_id) {
+    public List<Produit> getFilteredProduits(Optional<Boolean> surstock, Optional<Boolean> rupture, Optional<String> categorie, Optional<String> fournisseur) {
         return produitRepository.findFiltered(
                 Optional.ofNullable(surstock.orElse(null)),
                 Optional.ofNullable(rupture.orElse(null)),
-                Optional.ofNullable(categorie_id.orElse(null)),
-                Optional.ofNullable(fournisseur_id.orElse(null))
+                Optional.ofNullable(categorie.orElse("")),
+                Optional.ofNullable(fournisseur.orElse(""))
         );
     }
 
