@@ -4,10 +4,7 @@ import com.BdeB.StockVisioBackEnd.exception.ResourceNotFoundException;
 import com.BdeB.StockVisioBackEnd.model.entities.Produit;
 import com.BdeB.StockVisioBackEnd.model.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +17,7 @@ public class ProduitController {
     private ProduitService produitService;
 
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/ID")
     public List<Produit> getProduitById(@RequestParam int id) throws ResourceNotFoundException {
         List<Produit> produit = produitService.getProduitById(id);
@@ -29,6 +27,7 @@ public class ProduitController {
         return produit;
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping()
     public List<Produit> getAllProduits() throws ResourceNotFoundException {
         List<Produit> produits = produitService.getAllProduits();
@@ -38,6 +37,7 @@ public class ProduitController {
         return produits;
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/filtered")
     public List<Produit> getFilteredProduits(
             @RequestParam(value = "surstock", required = false) Optional<Boolean> surstock,
