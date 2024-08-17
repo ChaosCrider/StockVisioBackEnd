@@ -40,8 +40,8 @@ public class ProduitController {
 
     /*
     *
-    * Change Fournisseur look up by nom
-    * Change Description look up by description
+    * Change Fournisseur look up to be case-insensitive
+    * Change Description look up by be case-insensitive
     *
     */
     @CrossOrigin(origins = "http://localhost:5173")
