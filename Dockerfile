@@ -13,5 +13,6 @@ EXPOSE 8080
 
 RUN echo $PATH
 RUN which java
+RUN docker --version
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
