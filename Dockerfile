@@ -1,15 +1,13 @@
-# Use a base image that includes JDK 17
-FROM openjdk:17-jdk-slim
-LABEL authors="Chaoscrider"
+# Stage 1: Build Stage
+FROM maven:3-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -Pprod -DskipTests
 
-# Set the working directory in the container
-WORKDIR /
-
-# Copy the built JAR file into the container
-COPY target/StockVisioBackEnd-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port that the Spring Boot app runs on
+# Stage 2: Runtime Stage
+FROM eclipse-temurin:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/StockVisioBackEnd-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]
