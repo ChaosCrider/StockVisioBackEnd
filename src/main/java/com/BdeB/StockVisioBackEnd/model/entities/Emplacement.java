@@ -35,8 +35,8 @@ public class Emplacement {
     @Column(name = "statut", length = 80, nullable = false)
     private String statut = "Disponible";
 
-    @OneToMany(mappedBy = "produit")
-    private List<EmplacementProduit> emplacements = new ArrayList<>();
+    @OneToMany(mappedBy = "emplacement")
+    private List<EmplacementProduit> produits = new ArrayList<>();
 
     // Getters and setters
     public int getId() {
