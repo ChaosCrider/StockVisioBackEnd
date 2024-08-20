@@ -11,5 +11,6 @@ DROP TABLE IF EXISTS produits;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS fournisseurs;
 DROP TABLE IF EXISTS utilisateurs;
+DROP TABLE IF EXISTS emplacement_produits;
 
 commit

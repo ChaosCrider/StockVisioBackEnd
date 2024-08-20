@@ -1,7 +1,10 @@
 package com.BdeB.StockVisioBackEnd.model.entities;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "produits")
@@ -65,6 +68,9 @@ public class Produit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
+
+    @OneToMany(mappedBy = "emplacement")
+    private List<EmplacementProduit> produits = new ArrayList<>();
 
     public Fournisseur getFournisseur() {
         return fournisseur;
