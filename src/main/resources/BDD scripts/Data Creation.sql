@@ -111,7 +111,7 @@ VALUES
     ('Stock Critique', CURRENT_TIMESTAMP, 4, 15, 'Stock is critically low.', 'Nouvelle', NULL, 'Haute'),
     ('Stock Bas', CURRENT_TIMESTAMP, 5, 5, 'Stock is low.', 'Nouvelle', NULL, 'Moyenne');
 
-INSERT INTO emplacement_produits (emplacement_id, produit_id, quantite_stockee)
+INSERT INTO emplacement_produits (emplacement_id, produit_id, quantite)
 VALUES
     (1, 1, 10),  -- Shelf A storing 10 units of Smartphone
     (2, 2, 20),  -- Shelf B storing 20 units of Washing Machine
