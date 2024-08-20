@@ -69,8 +69,8 @@ public class Produit {
     @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
-    @OneToMany(mappedBy = "emplacement")
-    private List<EmplacementProduit> produits = new ArrayList<>();
+    @OneToMany(mappedBy = "produit")
+    private List<EmplacementProduit> emplacements = new ArrayList<>();
 
     public Fournisseur getFournisseur() {
         return fournisseur;
