@@ -2,6 +2,9 @@ package com.BdeB.StockVisioBackEnd.model.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "emplacements")
 public class Emplacement {
@@ -31,6 +34,9 @@ public class Emplacement {
 
     @Column(name = "statut", length = 80, nullable = false)
     private String statut = "Disponible";
+
+    @OneToMany(mappedBy = "emplacement")
+    private List<EmplacementProduit> produits = new ArrayList<>();
 
     // Getters and setters
     public int getId() {
