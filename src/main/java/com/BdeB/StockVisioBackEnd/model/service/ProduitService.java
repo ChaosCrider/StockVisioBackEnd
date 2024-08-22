@@ -56,28 +56,5 @@ public class ProduitService {
     */
 
 
-    // Emplacement requêtes ** assigné à Fella
-    public void getEmplacementProduitByProduit(){
-        //simple query with search on nom or description using :research
-    }
-
-    public void getEmplacementProduitByCategory(){
-        //query using join on category with search on category name using :research
-    }
-    public void getEmplacementProduitByEmplacement(){
-        /*
-            get emplacement by :research
-            get all matching entré
-            get all interne with matching destination
-
-            compiler les produits et leur quantité dans une liste payload
-
-            get all matching sortie
-            get all interne matching source
-
-            Compiler les modifications pour la payload
-        */
-    }
-
 
 }
