@@ -39,9 +39,10 @@ import java.util.Set;
 @NamedQuery(
         name = "Produit.findFilteredByEmplacement",
         query = """
-        SELECT p
+        SELECT p, e
         FROM Produit p
-        JOIN p.emplacement e
+        JOIN p.emplacements ep
+        JOIN ep.emplacement e
         WHERE (:emplacement IS NULL OR e.nom LIKE CONCAT('%', :emplacement, '%'))
     """
 )
