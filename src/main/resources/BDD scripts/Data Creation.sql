@@ -110,3 +110,16 @@ VALUES
     ('Expire Soon', CURRENT_TIMESTAMP, 3, 7, 'Product is nearing expiration.', 'Nouvelle', NULL, 'Basse'),
     ('Stock Critique', CURRENT_TIMESTAMP, 4, 15, 'Stock is critically low.', 'Nouvelle', NULL, 'Haute'),
     ('Stock Bas', CURRENT_TIMESTAMP, 5, 5, 'Stock is low.', 'Nouvelle', NULL, 'Moyenne');
+
+INSERT INTO emplacement_produits (emplacement_id, produit_id, quantite)
+VALUES
+    (1, 1, 10),  -- Shelf A storing 10 units of Smartphone
+    (2, 2, 20),  -- Shelf B storing 20 units of Washing Machine
+    (3, 3, 15),  -- Bin 1 storing 15 units of Sofa
+    (4, 4, 25),  -- Bin 2 storing 25 units of T-Shirt
+    (5, 5, 5),   -- Pallet 1 storing 5 units of Novel
+    (1, 6, 5),   -- Shelf A storing 5 units of Notebook
+    (2, 7, 15),  -- Shelf B storing 15 units of Sneakers
+    (3, 1, 5),   -- Bin 1 storing 5 additional units of Smartphone
+    (4, 3, 10),  -- Bin 2 storing 10 additional units of Sofa
+    (5, 7, 30);  -- Pallet 1 storing 30 units of Sneakers

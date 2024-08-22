@@ -140,4 +140,11 @@ CREATE TABLE alertes (
 	priorite VARCHAR(80)
 );
 
+CREATE TABLE emplacement_produits (
+                                      emplacement_id INT NOT NULL REFERENCES emplacements(emplacement_id) ON DELETE CASCADE,
+                                      produit_id INT NOT NULL REFERENCES produits(produit_id) ON DELETE CASCADE,
+                                      quantite DECIMAL NOT NULL,
+                                      PRIMARY KEY (emplacement_id, produit_id)
+);
+
 commit
