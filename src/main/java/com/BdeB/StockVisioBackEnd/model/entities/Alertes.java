@@ -5,6 +5,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "alertes")
+@NamedQuery(name = "Alertes.findAll", query = "SELECT a FROM Alertes a")
+@NamedQuery(name = "Alertes.findById", query = "SELECT a FROM Alertes a where a.id = :id")
+@NamedQuery(name = "Alertes.findByFilter", query = "SELECT a " +
+        "FROM Alertes a " +
+        "where (:nom IS NULL OR a.message like CONCAT('%', :nom,'%')) " +
+        "AND (:fournisseur IS NULL OR a.produit.fournisseur.nom like CONCAT('%', :fournisseur,'%')) " +
+        "AND (:statut IS NULL OR a.statut like CONCAT('%', :statut,'%'))" +
+        "AND (:dateCree IS NULL OR (a.dateCreation = :dateCree AND :dateCree IS NOT NULL)) " +
+        "AND (:dateReglee IS NULL OR (a.dateResolution = :dateReglee AND :dateReglee IS NOT NULL))")
+
+
 public class Alertes {
 
     @Id
