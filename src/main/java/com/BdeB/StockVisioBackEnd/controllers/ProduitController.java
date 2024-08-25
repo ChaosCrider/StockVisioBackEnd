@@ -18,7 +18,7 @@ public class ProduitController {
 
 
     @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/ID")
+    @GetMapping("id")
     public List<Produit> getProduitById(@RequestParam int id) throws ResourceNotFoundException {
         List<Produit> produit = produitService.getProduitById(id);
         if(produit == null){
