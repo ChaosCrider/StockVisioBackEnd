@@ -21,17 +21,17 @@ import java.util.Set;
         FROM Produit p
         JOIN p.categorie c
         JOIN p.fournisseur f
-        WHERE (:keyword IS NULL OR p.codeProduit LIKE CONCAT('%', :keyword, '%') OR p.description LIKE CONCAT('%', :keyword, '%'))
+        WHERE (:keyword IS NULL OR LOWER(p.codeProduit) LIKE CONCAT('%', LOWER(:keyword), '%') OR LOWER(p.description) LIKE CONCAT('%', LOWER(:keyword), '%'))
     """
 )
 
 @NamedQuery(
         name = "Produit.findFilteredByCategorie",
         query = """
-        SELECT p
-        FROM Produit p
-        JOIN p.categorie c
-        WHERE (:categorie IS NULL OR c.description LIKE CONCAT('%', :categorie, '%'))
+    SELECT p
+    FROM Produit p
+    JOIN p.categorie c
+    WHERE (:categorie IS NULL OR LOWER(c.description) LIKE CONCAT('%', LOWER(:categorie), '%'))
     """
 )
 
@@ -42,7 +42,7 @@ import java.util.Set;
         SELECT p
         FROM Produit p
         JOIN p.emplacement e
-        WHERE (:emplacement IS NULL OR e.nom LIKE CONCAT('%', :emplacement, '%'))
+        WHERE (:emplacement IS NULL OR LOWER(e.nom) LIKE CONCAT('%',   LOWER(:emplacement), '%'))
     """
 )
 

@@ -18,8 +18,8 @@ import java.util.List;
         "JOIN p.fournisseur f " +
         "WHERE (:surstock IS NULL OR p.quantiteEnStock > p.quantiteMaximale) " +
         "AND (:rupture IS NULL OR p.quantiteEnStock < p.seuilCritique) " +
-        "AND (:categorie IS NULL OR c.description LIKE CONCAT('%', :categorie, '%')) " +
-        "AND (:fournisseur IS NULL OR f.nom LIKE CONCAT('%', :fournisseur, '%'))"
+        "AND (:categorie IS NULL OR LOWER(c.description) LIKE CONCAT('%', LOWER(:categorie), '%')) " +
+        "AND (:fournisseur IS NULL OR LOWER(f.nom) LIKE CONCAT('%', LOWER(:fournisseur), '%'))"
 )
 
 public class Produit {
@@ -72,9 +72,19 @@ public class Produit {
     @OneToMany(mappedBy = "produit")
     private List<EmplacementProduit> emplacements = new ArrayList<>();
 
+
     @ManyToOne
     @JoinColumn(name = "emplacement_id")
     private Emplacement emplacement;
+
+    public Emplacement getEmplacement() {
+        return emplacement;
+    }
+
+    public void setEmplacement(Emplacement emplacement) {
+        this.emplacement = emplacement;
+    }
+
 
 
     public Fournisseur getFournisseur() {

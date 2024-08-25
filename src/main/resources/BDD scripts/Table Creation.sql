@@ -147,4 +147,13 @@ CREATE TABLE emplacement_produits (
                                       PRIMARY KEY (emplacement_id, produit_id)
 );
 
+
+ALTER TABLE produits
+    ADD COLUMN emplacement_id INT;
+
+ALTER TABLE produits
+    ADD CONSTRAINT fk_emplacement
+        FOREIGN KEY (emplacement_id)
+            REFERENCES emplacements (emplacement_id);
+
 commit
