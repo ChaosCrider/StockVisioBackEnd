@@ -8,20 +8,20 @@ VALUES
 
 INSERT INTO fournisseurs (code_fournisseur, nom, prenom, statut, email, telephone, adresse, nrc)
 VALUES
-    ('F001', 'Fournisseur1', 'Alice', TRUE, 'alice.fournisseur1@example.com', '123456789', '123 Street, City', 'NRC001'),
-    ('F002', 'Fournisseur2', 'Bob', TRUE, 'bob.fournisseur2@example.com', '987654321', '456 Avenue, City', 'NRC002'),
-    ('F003', 'Fournisseur3', 'Carol', TRUE, 'carol.fournisseur3@example.com', '555555555', '789 Boulevard, City', 'NRC003'),
-    ('F004', 'Fournisseur4', 'David', FALSE, 'david.fournisseur4@example.com', '444444444', '101 Road, City', 'NRC004'),
-    ('F005', 'Fournisseur5', 'Eve', TRUE, 'eve.fournisseur5@example.com', '666666666', '202 Lane, City', 'NRC005');
+    ('F001', 'Alibaba', 'Alice', TRUE, 'alice.fournisseur1@example.com', '123456789', '123 Street, City', 'NRC001'),
+    ('F002', 'Amazon', 'Bob', TRUE, 'bob.fournisseur2@example.com', '987654321', '456 Avenue, City', 'NRC002'),
+    ('F003', 'Google', 'Carol', TRUE, 'carol.fournisseur3@example.com', '555555555', '789 Boulevard, City', 'NRC003'),
+    ('F004', 'FedEx', 'David', FALSE, 'david.fournisseur4@example.com', '444444444', '101 Road, City', 'NRC004'),
+    ('F005', 'MicroBytes', 'Eve', TRUE, 'eve.fournisseur5@example.com', '666666666', '202 Lane, City', 'NRC005');
 
 INSERT INTO produits (code, nom, description, categorie_id, seuilCritique, prix_u, prix_vente, quantite_en_stock, quantite_maximale, date_achat, date_expiration, fournisseur_id)
 VALUES
     ('PROD001', 'Smartphone', 'Latest model smartphone', 1, 10, 300.00, 350.00, 50, 100, CURRENT_TIMESTAMP, '2025-12-31',5),
     ('PROD002', 'Washing Machine', 'Automatic washing machine', 2, 5, 500.00, 600.00, 20, 40, CURRENT_TIMESTAMP, '2025-06-30',4),
-    ('PROD003', 'Sofa', 'Comfortable 3-seater sofa', 3, 3, 700.00, 800.00, 10, 20, CURRENT_TIMESTAMP, '2025-12-31',3),
+    ('PROD003', 'Sofa', 'Comfortable 3-seater sofa', 3, 3, 700.00, 800.00, 0, 20, CURRENT_TIMESTAMP, '2025-12-31',3),
     ('PROD004', 'T-Shirt', 'Cotton t-shirt', 4, 50, 15.00, 20.00, 200, 500, CURRENT_TIMESTAMP, '2025-12-31',2),
     ('PROD005', 'Novel', 'Bestselling novel', 5, 30, 10.00, 12.00, 100, 300, CURRENT_TIMESTAMP, '2025-12-31',1),
-    ('PROD006', 'notebook', 'a paper note pad', 4, 50, 15.00, 20.00, 45, 500, CURRENT_TIMESTAMP, '2025-12-31',2),
+    ('PROD006', 'notebook', 'a paper note pad', 4, 50, 15.00, 20.00, 510, 500, CURRENT_TIMESTAMP, '2025-12-31',2),
     ('PROD007', 'sneakers', 'a specific type of shoes.', 4, 50, 15.00, 20.00, 700, 500, CURRENT_TIMESTAMP, '2025-12-31',2);
 
 
