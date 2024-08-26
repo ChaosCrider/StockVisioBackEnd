@@ -77,6 +77,14 @@ public class Produit {
     private Emplacement emplacement;
 
 
+    public List<EmplacementProduit> getEmplacements() {
+        return emplacements;
+    }
+
+    public void setEmplacements(List<EmplacementProduit> emplacements) {
+        this.emplacements = emplacements;
+    }
+
     public Fournisseur getFournisseur() {
         return fournisseur;
     }
