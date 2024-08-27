@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/produits")
 public class ProduitController {
@@ -17,7 +18,6 @@ public class ProduitController {
     private ProduitService produitService;
 
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("id")
     public List<Produit> getProduitById(@RequestParam int id) throws ResourceNotFoundException {
         List<Produit> produit = produitService.getProduitById(id);
@@ -27,7 +27,6 @@ public class ProduitController {
         return produit;
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping()
     public List<Produit> getAllProduits() throws ResourceNotFoundException {
         List<Produit> produits = produitService.getAllProduits();
@@ -44,7 +43,6 @@ public class ProduitController {
     * Change Description look up by be case-insensitive
     *
     */
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/filtered")
     public List<Produit> getFilteredProduits(
             @RequestParam(value = "surstock", required = false) Optional<Boolean> surstock,
