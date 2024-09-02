@@ -24,6 +24,25 @@ public interface AlertesRepository extends JpaRepository<Alertes, Integer> {
             @Param("dateCree")Optional <Date> dateCree,
             @Param("dateReglee")Optional <Date> dateReglee
 
-            );
-
+    );
+    @Query(name = "Alertes.findByFilterNoDate")
+    List<Alertes> findByFilterNoDate(
+            @Param("nom")Optional <String> nom,
+            @Param("fournisseur")Optional <String> fournisseur,
+            @Param("statut")Optional <String> statut
+    );
+    @Query(name = "Alertes.findByFilterDateReglee")
+    List<Alertes> findByFilterDateReglee(
+            @Param("nom")Optional <String> nom,
+            @Param("fournisseur")Optional <String> fournisseur,
+            @Param("statut")Optional <String> statut,
+            @Param("dateReglee")Optional <Date> dateReglee
+    );
+    @Query(name = "Alertes.findByFilterDateCree")
+    List<Alertes> findByFilterDateCree(
+            @Param("nom")Optional <String> nom,
+            @Param("fournisseur")Optional <String> fournisseur,
+            @Param("statut")Optional <String> statut,
+            @Param("dateCree")Optional <Date> dateCree
+    );
 }

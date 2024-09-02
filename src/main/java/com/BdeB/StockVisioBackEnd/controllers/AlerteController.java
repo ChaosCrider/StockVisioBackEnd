@@ -6,10 +6,8 @@ import com.BdeB.StockVisioBackEnd.model.entities.Produit;
 import com.BdeB.StockVisioBackEnd.model.service.AlerteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.Optional;
 public class AlerteController {
     @Autowired
     private AlerteService alerteService;
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping()
     public List<Alertes> getAllAlertes() throws ResourceNotFoundException {
         List<Alertes> alertes = alerteService.getAllAlertes();
@@ -30,7 +28,7 @@ public class AlerteController {
         }
         return alertes;
     }
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/id")
     public List<Alertes> getAlerteById(@RequestParam int id ) throws ResourceNotFoundException {
         List<Alertes> alerte = alerteService.getAlerteById(id);
@@ -39,14 +37,14 @@ public class AlerteController {
         }
         return alerte;
     }
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/filter")
     public List<Alertes> getAlerteByFilter(
             @RequestParam(value = "nom", required = false) Optional<String> nom,
             @RequestParam(value = "fournisseur", required = false) Optional<String> fournisseur,
             @RequestParam(value = "statut", required = false) Optional<String> statut,
-            @RequestParam(value = "dateCree", required = false) Optional<Date> dateCree,
-            @RequestParam(value = "dateReglee", required = false) Optional<Date> dateReglee
+            @RequestParam (value = "dateCree", required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Optional<Date> dateCree,
+            @RequestParam(value = "dateReglee", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Optional<Date> dateReglee
 
     ) throws ResourceNotFoundException{
         List<Alertes> alertes = alerteService.getAlerteByFilter(
