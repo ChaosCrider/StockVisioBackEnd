@@ -43,8 +43,8 @@ public class AlerteController {
             @RequestParam(value = "nom", required = false) Optional<String> nom,
             @RequestParam(value = "fournisseur", required = false) Optional<String> fournisseur,
             @RequestParam(value = "statut", required = false) Optional<String> statut,
-            @RequestParam (value = "dateCree", required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Optional<Date> dateCree,
-            @RequestParam(value = "dateReglee", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Optional<Date> dateReglee
+            @RequestParam (value = "dateCree", required = false)  Optional<String> dateCree,
+            @RequestParam(value = "dateReglee", required = false) Optional<String> dateReglee
 
     ) throws ResourceNotFoundException{
         List<Alertes> alertes = alerteService.getAlerteByFilter(

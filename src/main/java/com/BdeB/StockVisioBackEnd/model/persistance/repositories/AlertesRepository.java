@@ -21,8 +21,8 @@ public interface AlertesRepository extends JpaRepository<Alertes, Integer> {
             @Param("nom")Optional <String> nom,
             @Param("fournisseur")Optional <String> fournisseur,
             @Param("statut")Optional <String> statut,
-            @Param("dateCree")Optional <Date> dateCree,
-            @Param("dateReglee")Optional <Date> dateReglee
+            @Param("dateCree")Optional <String> dateCree,
+            @Param("dateReglee")Optional <String> dateReglee
 
     );
     @Query(name = "Alertes.findByFilterNoDate")
@@ -36,13 +36,13 @@ public interface AlertesRepository extends JpaRepository<Alertes, Integer> {
             @Param("nom")Optional <String> nom,
             @Param("fournisseur")Optional <String> fournisseur,
             @Param("statut")Optional <String> statut,
-            @Param("dateReglee")Optional <Date> dateReglee
+            @Param("dateReglee")Optional <String> dateReglee
     );
     @Query(name = "Alertes.findByFilterDateCree")
     List<Alertes> findByFilterDateCree(
             @Param("nom")Optional <String> nom,
             @Param("fournisseur")Optional <String> fournisseur,
             @Param("statut")Optional <String> statut,
-            @Param("dateCree")Optional <Date> dateCree
+            @Param("dateCree")Optional <String> dateCree
     );
 }

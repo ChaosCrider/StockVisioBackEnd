@@ -12,8 +12,8 @@ import java.util.Date;
         "where (:nom IS NULL OR a.message like CONCAT('%', :nom,'%')) " +
         "AND (:fournisseur IS NULL OR a.produit.fournisseur.nom like CONCAT('%', :fournisseur,'%')) " +
         "AND (:statut IS NULL OR a.statut like CONCAT('%', :statut,'%'))" +
-        "AND a.dateCreation = :dateCree " +
-        "AND a.dateResolution = :dateReglee"
+        "AND TO_CHAR(a.dateCreation, 'YYYY-MM-DD') = :dateCree " +
+        "AND TO_CHAR(a.dateResolution, 'YYYY-MM-DD') = :dateReglee"
         )
 
 @NamedQuery(name = "Alertes.findByFilterNoDate", query = "SELECT a " +
@@ -28,7 +28,7 @@ import java.util.Date;
         "where (:nom IS NULL OR a.message like CONCAT('%', :nom,'%')) " +
         "AND (:fournisseur IS NULL OR a.produit.fournisseur.nom like CONCAT('%', :fournisseur,'%')) " +
         "AND (:statut IS NULL OR a.statut like CONCAT('%', :statut,'%'))" +
-        "AND a.dateResolution = :dateReglee"
+        "AND TO_CHAR(a.dateResolution, 'YYYY-MM-DD') = :dateReglee"
 )
 
 @NamedQuery(name = "Alertes.findByFilterDateCree", query = "SELECT a " +
@@ -36,7 +36,7 @@ import java.util.Date;
         "where (:nom IS NULL OR a.message like CONCAT('%', :nom,'%')) " +
         "AND (:fournisseur IS NULL OR a.produit.fournisseur.nom like CONCAT('%', :fournisseur,'%')) " +
         "AND (:statut IS NULL OR a.statut like CONCAT('%', :statut,'%'))" +
-        "AND a.dateCreation = :dateCree "
+        "AND TO_CHAR(a.dateCreation, 'YYYY-MM-DD') = :dateCree "
 )
 
 

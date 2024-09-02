@@ -18,12 +18,10 @@ public class AlerteService {
 
     public List<Alertes> getAllAlertes() { return alertesRepository.findAll();}
 
-    public List<Alertes> getAlerteByFilter(Optional<String> nom, Optional <String> fournisseur, Optional <String> statut, Optional <Date> dateCree, Optional <Date> dateReglee )
+    public List<Alertes> getAlerteByFilter(Optional<String> nom, Optional <String> fournisseur, Optional <String> statut, Optional <String> dateCree, Optional <String> dateReglee )
     { List<Alertes> liste;
-        System.out.println("find by filter");
         if (!dateCree.isPresent() && !dateReglee.isPresent())
         {
-            System.out.println("null null");
             return alertesRepository.findByFilterNoDate(
                     Optional.ofNullable(nom.orElse("")),
                     Optional.ofNullable(fournisseur.orElse("")),
@@ -33,7 +31,6 @@ public class AlerteService {
 
         else if  (!dateCree.isPresent() && dateReglee.isPresent())
         {
-            System.out.println("Cree null Reglee not null");
             return alertesRepository.findByFilterDateReglee(
                     Optional.ofNullable(nom.orElse("")),
                     Optional.ofNullable(fournisseur.orElse("")),
@@ -43,7 +40,6 @@ public class AlerteService {
         }
             else if (dateCree.isPresent() && !dateReglee.isPresent())
         {
-            System.out.println("Reglee null Cree not null");
             return alertesRepository.findByFilterDateCree(
                     Optional.ofNullable(nom.orElse("")),
                     Optional.ofNullable(fournisseur.orElse("")),
@@ -53,7 +49,6 @@ public class AlerteService {
         }
 
             else {
-            System.out.println("not null not null");
 
         return alertesRepository.findByFilter(
             Optional.ofNullable(nom.orElse("")),
