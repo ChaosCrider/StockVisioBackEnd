@@ -197,11 +197,11 @@ VALUES
 
 INSERT INTO alertes (type, date_creation, produit_id, seuil_declanchement, message, statut, date_resolution, priorite)
 VALUES
-    ('Stock Critique', CURRENT_TIMESTAMP, 1, 10, 'Stock is below critical level.', 'Nouvelle', NULL, 'Haute'),
-    ('Stock Bas', CURRENT_TIMESTAMP, 2, 5, 'Stock is running low.', 'Nouvelle', NULL, 'Moyenne'),
-    ('Expire Soon', CURRENT_TIMESTAMP, 3, 7, 'Product is nearing expiration.', 'Nouvelle', NULL, 'Basse'),
-    ('Stock Critique', CURRENT_TIMESTAMP, 4, 15, 'Stock is critically low.', 'Nouvelle', NULL, 'Haute'),
-    ('Stock Bas', CURRENT_TIMESTAMP, 5, 5, 'Stock is low.', 'Nouvelle', NULL, 'Moyenne');
+    ('Stock Critique', '2024-08-01', 1, 10, 'Stock is below critical level.', 'Surstock', '2024-08-11', 'Haute'),
+    ('Stock Bas', '2023-11-25', 2, 5, 'Stock is running low.', 'Nouvelle', '2023-12-05', 'Surstock'),
+    ('Expire Soon', '2023-02-01', 3, 7, 'Product is nearing expiration.', 'Rupture', '2023-02-21', 'Basse'),
+    ('Stock Critique', '2024-12-20', 4, 15, 'Stock is critically low.', 'Nouvelle', '2024-12-22', 'Haute'),
+    ('Stock Bas', '2024-09-25', 5, 5, 'Stock is low.', 'Nouvelle', '2024-09-27', 'Rupture');
 
 INSERT INTO emplacement_produits (emplacement_id, produit_id, quantite)
 VALUES
