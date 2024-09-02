@@ -1,34 +1,32 @@
 package com.BdeB.StockVisioBackEnd.model.dataTransferObjects;
 
-import java.math.BigDecimal;
-
 public class ClientProfitDTO {
-    private String name;
+    private String nom;
     private int id;
-    private Double ventes;
+    private Double profits;
 
     // Constructor
     public ClientProfitDTO(String name, int id, Double ventes) {
-        this.name = name;
+        this.nom = name;
         this.id = id;
-        this.ventes = ventes;
+        this.profits = ventes;
     }
 
     public ClientProfitDTO(String name, int id, long ventes) {
-        this.name = name;
+        this.nom = name;
         this.id = id;
-        this.ventes = Double.longBitsToDouble(ventes);
+        this.profits = Double.longBitsToDouble(ventes);
     }
 
     // Getters and setters
 
 
-    public String getName() {
-        return name;
+    public String getNom() {
+        return nom;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public int getId() {
@@ -39,11 +37,11 @@ public class ClientProfitDTO {
         this.id = id;
     }
 
-    public Double getVentes() {
-        return ventes;
+    public Double getProfits() {
+        return profits;
     }
 
-    public void setVentes(Double ventes) {
-        this.ventes = ventes;
+    public void setProfits(Double profits) {
+        this.profits = profits;
     }
 }
