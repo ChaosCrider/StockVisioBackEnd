@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "fournisseurs")
+@NamedQuery(name = "Fournisseur.findAll", query ="Select f from Fournisseur f")
+
 public class Fournisseur {
 
     @Id

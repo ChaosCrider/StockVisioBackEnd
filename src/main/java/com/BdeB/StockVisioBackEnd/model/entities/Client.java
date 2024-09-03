@@ -4,6 +4,21 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "clients")
+@NamedQuery(name = "Client.findALl", query = "Select c from Client c")
+
+
+/*
+*   uses Data Transfer
+*/
+@NamedQuery(name = "Client.Profits", query  = """
+        SELECT new com.BdeB.StockVisioBackEnd.model.dataTransferObjects.ClientProfitDTO((c.nom || ', ' || c.prenom),MIN(c.id),SUM(lc.quantite * p.prixU))
+        from LigneCommande lc
+        join Produit p on p.id = lc.produit.id
+        join CommandeClient cc on lc.commandeClient.id = cc.id
+        join Client c on c.id = cc.id
+        group by c.id
+        order by SUM(lc.quantite * p.prixU) desc
+    """)
 public class Client {
 
     @Id

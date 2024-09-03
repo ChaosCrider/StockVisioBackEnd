@@ -4,24 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "mouvements_entree")
+@NamedQuery(name = "Entree.findAll" , query="select e from Entree e")
 public class Entree extends Mouvement {
-
-//    @ManyToOne
-//    @JoinColumn(name = "source_id")
-//    private Emplacement source;
 
     @ManyToOne
     @JoinColumn(name = "emplacement_id")
     private Emplacement destination;
-
-    // Getters and setters
-//    public Emplacement getSource() {
-//        return source;
-//    }
-//
-//    public void setSource(Emplacement source) {
-//        this.source = source;
-//    }
 
     public Emplacement getDestination() {
         return destination;
